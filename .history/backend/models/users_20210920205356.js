@@ -23,7 +23,8 @@ const findList = () => {
 
 // 在数据库中删除用户
 const removeUser = id => {
-  return Users.deleteOne({ _id: id })
+  console.log(id + "----id");
+  return Users.deleteOne(id)
 }
 
 exports.signup = signup

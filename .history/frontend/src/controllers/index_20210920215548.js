@@ -176,7 +176,7 @@ const index = (router) => {
     })
 
     // 点击前一页
-    $("#users-page").on("click", "#users-page-list li:first-child", function () {
+    $("#users-page").on("click", "#users-page-list li(:first-child)", function () {
       if(currentPage > 1){
         currentPage--
         _list(currentPage)
@@ -185,11 +185,10 @@ const index = (router) => {
     })
 
      // 点击后一页
-     $("#users-page").on("click", "#users-page-list li:last-child", function () {
+     $("#users-page").on("click", "#users-page-list li(:first-child)", function () {
       if(currentPage < Math.ceil(dataList.length / pageSize)){
         currentPage++
         _list(currentPage)
-        _setPageActive(currentPage)
       }
     })
 

@@ -52,17 +52,19 @@ const list = async (req, res, next) => {
 
 // 删除用户列表
 const remove = async (req, res, next) => {
-  res.set('content-type', 'application/json; charset=utf-8')
   const {id} = req.body
   let result = await usersModel.removeUser(id)
 
   if (result) {
+  res.set('content-type', 'application/json; charset=utf-8')
     res.render('success', {
       data: JSON.stringify({
         message: '删除成功！'
       })
     })
   }
+  
+  res.set('content-type', 'application/json; charset=utf-8')
   res.render('fail', {
     data: JSON.stringify({
       message: '删除失败！'

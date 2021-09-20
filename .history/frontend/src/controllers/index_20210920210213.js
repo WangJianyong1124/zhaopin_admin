@@ -14,13 +14,13 @@ const htmlSignin = signinTpl({})
 
 
 // 定义每页几条
-const pageSize = 3
+const pageSize = 10
 
 // 临时存储读取的数据
 let dataList = []
 
 // 当前用户点击的页
-let currentPage = 1
+let currentPage = 
 
 
 
@@ -45,7 +45,7 @@ const _signup = () => {
     data,
     success(res) {
       // 添加成功之后刷新页面
-      // console.log(res)
+      console.log(res)
       // 添加数据之后读取数据 
       _loadData()
       // 然后渲染第一页的数据
@@ -67,14 +67,19 @@ const _pagenation = (data) => {
 
   const htmlPage = usersListPageTpl({
     pageArray,
+
   })
 
   $("#users-page").html(htmlPage)
 
   // 默认页面页码高亮
-  // $("#users-page-list li:nth-child(2)").addClass("active")
-  _setPageActive(currentPage)
-
+  $("#users-page-list li:nth-child(2)").addClass("active")
+  // 点击之后页码高亮
+  $("#users-page-list li:not(:first-child, :last-child)").on("click", function () {
+    $(this).addClass("active").siblings().removeClass("active")
+    // 渲染第二页
+    _list($(this).index())
+  })
 }
 
 // 加载数据方法
@@ -88,7 +93,7 @@ const _loadData = () => {
 
       //   // 分页
       _pagenation(result.data)
-      _list(currentPage)
+      _list(1)
     }
     // success(result) {
     //   // 渲染list逻辑
@@ -98,18 +103,6 @@ const _loadData = () => {
 
     // }
   })
-}
-
-/**
- * 页码高亮
- * @param {当前选中的是哪个页} index 
- */
-const _setPageActive = (index) => {
-  $("#users-page #users-page-list li:not(:first-child, :last-child")
-    .eq(index - 1)
-    .addClass("active")
-    .siblings()
-    .removeClass("active")
 }
 
 /**
@@ -147,50 +140,8 @@ const index = (router) => {
         },
         success() {
           _loadData()
-
-          // 是否是最后一页
-          const isLastPage = Math.ceil(dataList.length / pageSize) === currentPage
-          // 是否是这一页的最后一条数据
-          const isResOne = dataList.length % pageSize === 1
-          // 是否不是第一页
-          const notPageFirst = currentPage > 0
-
-          if (isLastPage && isResOne && notPageFirst) {
-            // 跳转到前一页
-            currentPage--
-          }
-
         }
       })
-    })
-
-    // 点击之后页码高亮
-    $("#users-page").on("click", "#users-page-list li:not(:first-child, :last-child)", function () {
-      const index = $(this).index()
-      $(this).addClass("active").siblings().removeClass("active")
-      // 渲染其他页
-      _list(index)
-      // 修改当前用户点击的页为 当前值
-      currentPage = index
-      _setPageActive(index)
-    })
-
-    // 点击前一页
-    $("#users-page").on("click", "#users-page-list li:first-child", function () {
-      if(currentPage > 1){
-        currentPage--
-        _list(currentPage)
-        _setPageActive(currentPage)
-      }
-    })
-
-     // 点击后一页
-     $("#users-page").on("click", "#users-page-list li:last-child", function () {
-      if(currentPage < Math.ceil(dataList.length / pageSize)){
-        currentPage++
-        _list(currentPage)
-        _setPageActive(currentPage)
-      }
     })
 
 

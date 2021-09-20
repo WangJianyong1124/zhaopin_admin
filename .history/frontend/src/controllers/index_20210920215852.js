@@ -165,7 +165,7 @@ const index = (router) => {
     })
 
     // 点击之后页码高亮
-    $("#users-page").on("click", "#users-page-list li:not(:first-child, :last-child)", function () {
+    $("#users-page").on("click", "#users-page-list li:first-child, :last-child", function () {
       const index = $(this).index()
       $(this).addClass("active").siblings().removeClass("active")
       // 渲染其他页
@@ -185,7 +185,7 @@ const index = (router) => {
     })
 
      // 点击后一页
-     $("#users-page").on("click", "#users-page-list li:last-child", function () {
+     $("#users-page").on("click", "#users-page-list li:first-child", function () {
       if(currentPage < Math.ceil(dataList.length / pageSize)){
         currentPage++
         _list(currentPage)

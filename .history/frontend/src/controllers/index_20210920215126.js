@@ -153,9 +153,9 @@ const index = (router) => {
           // 是否是这一页的最后一条数据
           const isResOne = dataList.length % pageSize === 1
           // 是否不是第一页
-          const notPageFirst = currentPage > 0
+          const notPageFirst =  currentPage > 0
 
-          if (isLastPage && isResOne && notPageFirst) {
+          if ( isLastPage && isResOne && notPageFirst ){
             // 跳转到前一页
             currentPage--
           }
@@ -175,22 +175,9 @@ const index = (router) => {
       _setPageActive(index)
     })
 
-    // 点击前一页
-    $("#users-page").on("click", "#users-page-list li:first-child", function () {
-      if(currentPage > 1){
-        currentPage--
-        _list(currentPage)
-        _setPageActive(currentPage)
-      }
-    })
-
-     // 点击后一页
-     $("#users-page").on("click", "#users-page-list li:last-child", function () {
-      if(currentPage < Math.ceil(dataList.length / pageSize)){
-        currentPage++
-        _list(currentPage)
-        _setPageActive(currentPage)
-      }
+    // 点击前一页后一页
+    $("#users-page").on("click", "#users-page-list li(:first-child)", function(){
+      
     })
 
 

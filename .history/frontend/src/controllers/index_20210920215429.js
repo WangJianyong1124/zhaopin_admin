@@ -175,21 +175,19 @@ const index = (router) => {
       _setPageActive(index)
     })
 
-    // 点击前一页
-    $("#users-page").on("click", "#users-page-list li:first-child", function () {
+    // 点击前一页后一页
+    $("#users-page").on("click", "#users-page-list li(:first-child)", function () {
       if(currentPage > 1){
         currentPage--
         _list(currentPage)
-        _setPageActive(currentPage)
       }
     })
 
      // 点击后一页
-     $("#users-page").on("click", "#users-page-list li:last-child", function () {
-      if(currentPage < Math.ceil(dataList.length / pageSize)){
-        currentPage++
+     $("#users-page").on("click", "#users-page-list li(:first-child)", function () {
+      if(currentPage > 1){
+        currentPage--
         _list(currentPage)
-        _setPageActive(currentPage)
       }
     })
 

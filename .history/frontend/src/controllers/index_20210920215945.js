@@ -185,7 +185,7 @@ const index = (router) => {
     })
 
      // 点击后一页
-     $("#users-page").on("click", "#users-page-list li:last-child", function () {
+     $("#users-page").on("click", "#users-page-list li:first-child", function () {
       if(currentPage < Math.ceil(dataList.length / pageSize)){
         currentPage++
         _list(currentPage)

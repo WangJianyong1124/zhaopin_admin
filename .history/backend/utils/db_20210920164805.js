@@ -1,6 +1,6 @@
 // getting-started.js
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/zhaopin-admin', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true});
+mongoose.connect('mongodb://localhost/zhaopin-admin', {useNewUrlParser: true, useUnifiedTopology: true});
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
