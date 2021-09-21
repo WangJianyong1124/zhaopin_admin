@@ -4,14 +4,13 @@ import router from "../routes"
 import indexTpl from "../views/index.art"
 import usersTpl from "../views/users.art"
 import usersListTpl from "../views/users-list.art"
+import usersListPageTpl from "../views/users-pages.art"
+
 // 将index.art模板文件的内容保存到 变量中
 const htmlIndex = indexTpl({})
 
-import pagenation from '../components/pagenation'
-import page from "../databus/page"
-
 // 定义每页几条
-const pageSize = 3
+const pageSize = 10
 // 当前用户点击的页
 let currentPage = 1
 
@@ -34,15 +33,15 @@ const _bindMethods = () => {
         _loadData()
 
         // 是否是最后一页
-        const isLastPage = Math.ceil(dataList.length / pageSize) === page.currentPage
+        const isLastPage = Math.ceil(dataList.length / pageSize) === currentPage
         // 是否是这一页的最后一条数据
-        const isResOne = dataList.length % page.pageSize === 1
+        const isResOne = dataList.length % pageSize === 1
         // 是否不是第一页
-        const notPageFirst = page.currentPage > 0
+        const notPageFirst = currentPage > 0
 
         if (isLastPage && isResOne && notPageFirst) {
           // 跳转到前一页
-          page.setCurrentPage(page.currentPage - 1)
+          currentPage--
         }
 
       }
@@ -83,7 +82,6 @@ const _signup = () => {
       // 添加成功之后刷新页面
       // console.log(res)
       // 添加数据之后读取数据 
-      page.setCurrentPage(1) // 添加之后返回第一页
       _loadData()
       // 然后渲染第一页的数据
       // _list(1)
@@ -116,20 +114,13 @@ const _loadData = () => {
       dataList = result.data
 
       //   // 分页
-      pagenation(result.data, pageSize, currentPage)
+      _pagenation(result.data)
       _list(currentPage)
     }
   })
 }
 
 
-// 观察
-const _subscribe = () => {
-  $("body").on("changeCurrentPage", (e, index) => {
-    _list(index)
-    console.log(page.currentPage);
-  })
-}
 
 // 首页
 const index = (router) => {
@@ -164,9 +155,6 @@ const index = (router) => {
 
     // 页面事件绑定
     _bindMethods()
-
-    // 订阅
-    _subscribe()
   }
 }
 

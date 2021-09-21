@@ -4,24 +4,24 @@ import router from "../routes"
 import indexTpl from "../views/index.art"
 import usersTpl from "../views/users.art"
 import usersListTpl from "../views/users-list.art"
+import usersListPageTpl from "../views/users-pages.art"
+
 // 将index.art模板文件的内容保存到 变量中
 const htmlIndex = indexTpl({})
 
-import pagenation from '../components/pagenation'
-import page from "../databus/page"
 
 // 定义每页几条
 const pageSize = 3
-// 当前用户点击的页
-let currentPage = 1
 
 // 临时存储读取的数据
 let dataList = []
 
+// 当前用户点击的页
+let currentPage = 1
 
 
 // 事件绑定的方法
-const _bindMethods = () => {
+const _bind = () => {
   // 绑定删除按钮
   $("#users-list").on("click", ".remove", function () {
     $.ajax({
@@ -34,20 +34,50 @@ const _bindMethods = () => {
         _loadData()
 
         // 是否是最后一页
-        const isLastPage = Math.ceil(dataList.length / pageSize) === page.currentPage
+        const isLastPage = Math.ceil(dataList.length / pageSize) === currentPage
         // 是否是这一页的最后一条数据
-        const isResOne = dataList.length % page.pageSize === 1
+        const isResOne = dataList.length % pageSize === 1
         // 是否不是第一页
-        const notPageFirst = page.currentPage > 0
+        const notPageFirst = currentPage > 0
 
         if (isLastPage && isResOne && notPageFirst) {
           // 跳转到前一页
-          page.setCurrentPage(page.currentPage - 1)
+          currentPage--
         }
 
       }
     })
   })
+
+  // 点击之后页码高亮
+  $("#users-page").on("click", "#users-page-list li:not(:first-child, :last-child)", function () {
+    const index = $(this).index()
+    $(this).addClass("active").siblings().removeClass("active")
+    // 渲染其他页
+    _list(index)
+    // 修改当前用户点击的页为 当前值
+    currentPage = index
+    _setPageActive(index)
+  })
+
+  // 点击前一页
+  $("#users-page").on("click", "#users-page-list li:first-child", function () {
+    if (currentPage > 1) {
+      currentPage--
+      _list(currentPage)
+      _setPageActive(currentPage)
+    }
+  })
+
+  // 点击后一页
+  $("#users-page").on("click", "#users-page-list li:last-child", function () {
+    if (currentPage < Math.ceil(dataList.length / pageSize)) {
+      currentPage++
+      _list(currentPage)
+      _setPageActive(currentPage)
+    }
+  })
+
 
   // 点击退出账号
   $("#users-signout").on("click", () => {
@@ -55,17 +85,14 @@ const _bindMethods = () => {
     $.ajax({
       url: "/api/users/signout",
       dataType: "json",
-      success(result) {
-        if (result.ret) {
+      success(result){
+        if (result.ret){
           // 刷新页面
           location.reload()
         }
       }
     })
   })
-
-  // 点击保存 提交表单
-  $("#users-save").on("click", _signup)
 }
 
 
@@ -83,7 +110,6 @@ const _signup = () => {
       // 添加成功之后刷新页面
       // console.log(res)
       // 添加数据之后读取数据 
-      page.setCurrentPage(1) // 添加之后返回第一页
       _loadData()
       // 然后渲染第一页的数据
       // _list(1)
@@ -93,18 +119,26 @@ const _signup = () => {
   $btnClose.click()
 }
 
-/**
- * 
- * @param {*} pageNum 当前在第几页
- */
- const _list = (pageNum) => {
-  url: "/api/users/list",
-    // 渲染list逻辑
-    $("#users-list").html(usersListTpl({
-      data: dataList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
-    }))
-}
+// 分页逻辑
+const _pagenation = (data) => {
+  // 定义总条数
+  const total = data.length
+  // 求总页数
+  const pageCount = Math.ceil(total / pageSize)
+  // 根据总页数生成数组
+  const pageArray = new Array(pageCount)
 
+  const htmlPage = usersListPageTpl({
+    pageArray,
+  })
+
+  $("#users-page").html(htmlPage)
+
+  // 默认页面页码高亮
+  // $("#users-page-list li:nth-child(2)").addClass("active")
+  _setPageActive(currentPage)
+
+}
 
 // 加载数据方法
 const _loadData = () => {
@@ -116,19 +150,41 @@ const _loadData = () => {
       dataList = result.data
 
       //   // 分页
-      pagenation(result.data, pageSize, currentPage)
+      _pagenation(result.data)
       _list(currentPage)
     }
+    // success(result) {
+    //   // 渲染list逻辑
+    //   $("#users-list").html(usersListTpl({
+    //     data: result.data.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+    //   }))
+
+    // }
   })
 }
 
+/**
+ * 页码高亮
+ * @param {当前选中的是哪个页} index 
+ */
+const _setPageActive = (index) => {
+  $("#users-page #users-page-list li:not(:first-child, :last-child")
+    .eq(index - 1)
+    .addClass("active")
+    .siblings()
+    .removeClass("active")
+}
 
-// 观察
-const _subscribe = () => {
-  $("body").on("changeCurrentPage", (e, index) => {
-    _list(index)
-    console.log(page.currentPage);
-  })
+/**
+ * 
+ * @param {*} pageNum 当前在第几页
+ */
+const _list = (pageNum) => {
+  url: "/api/users/list",
+    // 渲染list逻辑
+    $("#users-list").html(usersListTpl({
+      data: dataList.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+    }))
 }
 
 // 首页
@@ -146,7 +202,7 @@ const index = (router) => {
           router.go("/index")
         } else {
           router.go("/signin")
-        }
+        } 
       }
     })
 
@@ -159,14 +215,14 @@ const index = (router) => {
 
     // 填充用户列表
     $("#content").html(usersTpl())
+
     // 第一次 渲染list
     await _loadData()
+    // _list(1)
 
-    // 页面事件绑定
-    _bindMethods()
+    // 点击保存 提交表单
+    $("#users-save").on("click", _signup)
 
-    // 订阅
-    _subscribe()
   }
 }
 

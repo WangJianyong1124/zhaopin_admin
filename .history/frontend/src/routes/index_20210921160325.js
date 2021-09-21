@@ -4,9 +4,8 @@ import SMERouter from "sme-router"
 // 创建路由对象
 const router = new SMERouter("root")
 
-/*  */
-import index from "../controllers/index"
-import signin from "../controllers/signin"
+/* c */
+import {index } from "../controllers"
 
 
 // 路由

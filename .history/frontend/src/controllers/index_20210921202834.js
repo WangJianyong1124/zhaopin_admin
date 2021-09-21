@@ -34,11 +34,11 @@ const _bindMethods = () => {
         _loadData()
 
         // 是否是最后一页
-        const isLastPage = Math.ceil(dataList.length / pageSize) === page.currentPage
+        const isLastPage = Math.ceil(dataList.length / pageSize) === currentPage
         // 是否是这一页的最后一条数据
-        const isResOne = dataList.length % page.pageSize === 1
+        const isResOne = dataList.length % pageSize === 1
         // 是否不是第一页
-        const notPageFirst = page.currentPage > 0
+        const notPageFirst = currentPage > 0
 
         if (isLastPage && isResOne && notPageFirst) {
           // 跳转到前一页

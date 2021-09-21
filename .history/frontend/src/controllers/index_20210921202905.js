@@ -38,7 +38,7 @@ const _bindMethods = () => {
         // 是否是这一页的最后一条数据
         const isResOne = dataList.length % page.pageSize === 1
         // 是否不是第一页
-        const notPageFirst = page.currentPage > 0
+        const notPageFirst = currentPage > 0
 
         if (isLastPage && isResOne && notPageFirst) {
           // 跳转到前一页

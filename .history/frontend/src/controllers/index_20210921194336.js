@@ -8,7 +8,6 @@ import usersListTpl from "../views/users-list.art"
 const htmlIndex = indexTpl({})
 
 import pagenation from '../components/pagenation'
-import page from "../databus/page"
 
 // 定义每页几条
 const pageSize = 3
@@ -18,6 +17,12 @@ let currentPage = 1
 // 临时存储读取的数据
 let dataList = []
 
+// 观察者
+const subscribe = () => {
+  $.on("changeCurrentPage", () => {
+    console.log(1010);
+  })
+}
 
 
 // 事件绑定的方法
@@ -34,15 +39,15 @@ const _bindMethods = () => {
         _loadData()
 
         // 是否是最后一页
-        const isLastPage = Math.ceil(dataList.length / pageSize) === page.currentPage
+        const isLastPage = Math.ceil(dataList.length / pageSize) === currentPage
         // 是否是这一页的最后一条数据
-        const isResOne = dataList.length % page.pageSize === 1
+        const isResOne = dataList.length % pageSize === 1
         // 是否不是第一页
-        const notPageFirst = page.currentPage > 0
+        const notPageFirst = currentPage > 0
 
         if (isLastPage && isResOne && notPageFirst) {
           // 跳转到前一页
-          page.setCurrentPage(page.currentPage - 1)
+          currentPage--
         }
 
       }
@@ -83,7 +88,6 @@ const _signup = () => {
       // 添加成功之后刷新页面
       // console.log(res)
       // 添加数据之后读取数据 
-      page.setCurrentPage(1) // 添加之后返回第一页
       _loadData()
       // 然后渲染第一页的数据
       // _list(1)
@@ -123,13 +127,6 @@ const _loadData = () => {
 }
 
 
-// 观察
-const _subscribe = () => {
-  $("body").on("changeCurrentPage", (e, index) => {
-    _list(index)
-    console.log(page.currentPage);
-  })
-}
 
 // 首页
 const index = (router) => {
@@ -164,9 +161,6 @@ const index = (router) => {
 
     // 页面事件绑定
     _bindMethods()
-
-    // 订阅
-    _subscribe()
   }
 }
 

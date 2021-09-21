@@ -34,15 +34,15 @@ const _bindMethods = () => {
         _loadData()
 
         // 是否是最后一页
-        const isLastPage = Math.ceil(dataList.length / pageSize) === page.currentPage
+        const isLastPage = Math.ceil(dataList.length / pageSize) === currentPage
         // 是否是这一页的最后一条数据
-        const isResOne = dataList.length % page.pageSize === 1
+        const isResOne = dataList.length % pageSize === 1
         // 是否不是第一页
-        const notPageFirst = page.currentPage > 0
+        const notPageFirst = currentPage > 0
 
         if (isLastPage && isResOne && notPageFirst) {
           // 跳转到前一页
-          page.setCurrentPage(page.currentPage - 1)
+          currentPage--
         }
 
       }
@@ -83,7 +83,6 @@ const _signup = () => {
       // 添加成功之后刷新页面
       // console.log(res)
       // 添加数据之后读取数据 
-      page.setCurrentPage(1) // 添加之后返回第一页
       _loadData()
       // 然后渲染第一页的数据
       // _list(1)
@@ -127,7 +126,6 @@ const _loadData = () => {
 const _subscribe = () => {
   $("body").on("changeCurrentPage", (e, index) => {
     _list(index)
-    console.log(page.currentPage);
   })
 }
 
