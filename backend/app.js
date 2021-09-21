@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cookieSession = require("cookie-session")
 
 // 导入 解决跨域的工具 cors
 
@@ -20,6 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// 设置cookie-session
+app.use(cookieSession({
+  name: "session",
+  keys: ["key1", "key2"]
+}))
 
 app.use('/api/users', userRouter)
 

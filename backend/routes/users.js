@@ -2,11 +2,17 @@ var express = require('express');
 var router = express.Router();
 
 // 载入中间件
-const { signup, list, remove } = require("../controllers/users")
+const { signup, list, remove, signin, signout } = require("../controllers/users")
 
+const {auth} = require("../middlewares/auth")
 
-router.post('/', signup);
-router.get("/", list)
-router.delete("/", remove)
+// 获取数据
+router.get("/", auth, list)
+router.delete("/", auth, remove)
+
+// 登陆注册
+router.post('/', auth, signup);
+router.post("/signin", signin)
+router.get("/signout", auth, signout)
 
 module.exports = router;
