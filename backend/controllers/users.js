@@ -56,7 +56,7 @@ const signin = async (req, res, next) => {
       const sessionId = randomstring.generate()
       // 往前端种cookie
       res.set("Set-Cookie", `sessionId=${sessionId} ; Path=/; HttpOnly`)*/
-      
+
       // 种一个用户名
       req.session.username = username
 
@@ -91,6 +91,23 @@ const signout = async (req, res, next) => {
       message: "成功退出登录"
     })
   })
+}
+
+const isAuth = async (req, res, next) => {
+  // 判断用户名是否存在
+  if (req.session.username) {
+    res.render("success", {
+      data: JSON.stringify({
+        username: req.session.username
+      })
+    })
+  } else {
+    res.render("fail", {
+      data: JSON.stringify({
+        message: "请登录"
+      })
+    })
+  }
 }
 
 // 用户列表
@@ -129,3 +146,4 @@ exports.signin = signin
 exports.list = list
 exports.remove = remove
 exports.signout = signout
+exports.isAuth = isAuth

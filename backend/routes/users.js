@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // 载入中间件
-const { signup, list, remove, signin, signout } = require("../controllers/users")
+const { signup, list, remove, signin, signout, isAuth } = require("../controllers/users")
 
 const {auth} = require("../middlewares/auth")
 
@@ -14,5 +14,7 @@ router.delete("/", auth, remove)
 router.post('/', auth, signup);
 router.post("/signin", signin)
 router.get("/signout", auth, signout)
+// 是否有权限的接口
+router.get("/isAuth", isAuth)
 
 module.exports = router;
