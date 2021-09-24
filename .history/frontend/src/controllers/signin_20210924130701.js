@@ -16,6 +16,7 @@ const signin = (router) => {
 // 点击提交按钮
 const _handleSubmit = (router) => {
   return (e) => {
+    console.log(e);
     e.preventDefault()
     // router.go("/index")
     // 提交表单   serialize  拿到表单的数据
