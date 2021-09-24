@@ -35,11 +35,11 @@
             <form role="form" id="users-form">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="username">用户名: </label>
+                  <label for="username">用户名</label>
                   <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
                 </div>
                 <div class="form-group">
-                  <label for="password">密码: </label>
+                  <label for="password">密码</label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
                 </div>
               </div>
@@ -47,7 +47,7 @@
           </div>
           <!-- /.box -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="users-close">关闭</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="users-close">关闭</button>
             <button type="button" class="btn btn-success" id="users-save">保存</button>
           </div>
         </div>

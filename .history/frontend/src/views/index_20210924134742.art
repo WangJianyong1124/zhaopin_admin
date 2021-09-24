@@ -138,7 +138,7 @@
                 <li class="user-body">
                   <div class="row">
                     <div class="col-xs-4 text-center">
-                      <a href="#">招聘的人</a>
+                      <a href="#" class="btn btn-default">招聘的人</a>
                     </div>
                     <div class="col-xs-4 text-center">
                       <a href="#">派遣人员</a>

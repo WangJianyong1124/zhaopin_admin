@@ -11,7 +11,7 @@ import pagenation from '../components/pagenation'
 import page from "../databus/page"
 
 // 定义每页几条
-const pageSize = 10
+const pageSize = 8
 // 当前用户点击的页
 let currentPage = 1
 

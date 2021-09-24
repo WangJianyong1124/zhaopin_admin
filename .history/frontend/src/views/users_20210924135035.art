@@ -47,7 +47,7 @@
           </div>
           <!-- /.box -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="users-close">关闭</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" id="users-close">关闭</button>
             <button type="button" class="btn btn-success" id="users-save">保存</button>
           </div>
         </div>

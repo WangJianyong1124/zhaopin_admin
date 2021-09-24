@@ -1,3 +1,4 @@
+  
   <div class="wrapper">
 
     <!-- Main Header -->
@@ -28,7 +29,7 @@
                 <span class="label label-success">4</span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">你有 4 条消息</li>
+                <li class="header">You have 4 messages</li>
                 <li>
                   <!-- inner menu: contains the messages -->
                   <ul class="menu">
@@ -36,22 +37,22 @@
                       <a href="#">
                         <div class="pull-left">
                           <!-- User Image -->
-                          <img src="https://b.picbed.cn/file/picbed-cn/2021/09/24/OIP-C.jpg"  class="img-circle" alt="User Image" />
+                          <img src="http://adminlte.xueyao.org/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                         </div>
                         <!-- Message title and timestamp -->
                         <h4>
-                          WangJianYong1124
-                          <small><i class="fa fa-clock-o"></i> 5 分钟前</small>
+                          Support Team
+                          <small><i class="fa fa-clock-o"></i> 5 mins</small>
                         </h4>
                         <!-- The message -->
-                        <p>点击进入个人主页</p>
+                        <p>Why not buy a new awesome theme?</p>
                       </a>
                     </li>
                     <!-- end message -->
                   </ul>
                   <!-- /.menu -->
                 </li>
-                <li class="footer"><a href="#">查看所有消息</a></li>
+                <li class="footer"><a href="#">See All Messages</a></li>
               </ul>
             </li>
             <!-- /.messages-menu -->
@@ -64,19 +65,19 @@
                 <span class="label label-warning">10</span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">你有 10 条通知</li>
+                <li class="header">You have 10 notifications</li>
                 <li>
                   <!-- Inner Menu: contains the notifications -->
                   <ul class="menu">
                     <li><!-- start notification -->
                       <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 条新通知来自你的团队
+                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
                       </a>
                     </li>
                     <!-- end notification -->
                   </ul>
                 </li>
-                <li class="footer"><a href="#">查看所有通知</a></li>
+                <li class="footer"><a href="#">View all</a></li>
               </ul>
             </li>
             <!-- Tasks Menu -->
@@ -87,7 +88,7 @@
                 <span class="label label-danger">9</span>
               </a>
               <ul class="dropdown-menu">
-                <li class="header">你有 9 个任务</li>
+                <li class="header">You have 9 tasks</li>
                 <li>
                   <!-- Inner menu: contains the tasks -->
                   <ul class="menu">
@@ -95,7 +96,7 @@
                       <a href="#">
                         <!-- Task title and progress text -->
                         <h3>
-                          发送 9 条招聘信息
+                          Design some buttons
                           <small class="pull-right">20%</small>
                         </h3>
                         <!-- The progress bar -->
@@ -111,7 +112,7 @@
                   </ul>
                 </li>
                 <li class="footer">
-                  <a href="#">查看所有任务</a>
+                  <a href="#">View all tasks</a>
                 </li>
               </ul>
             </li>
@@ -120,31 +121,31 @@
               <!-- Menu Toggle Button -->
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <!-- The user image in the navbar-->
-                <img src="https://b.picbed.cn/file/picbed-cn/2021/09/24/OIP-C.jpg"  class="user-image" alt="User Image"/>
+                <img src="http://adminlte.xueyao.org/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">WangJianYong1124</span>
+                <span class="hidden-xs">Alexander Pierce</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
                 <li class="user-header">
-                <img src="https://b.picbed.cn/file/picbed-cn/2021/09/24/OIP-C.jpg"  class="img-circle" alt="User Image"/>
+                  <img src="http://adminlte.xueyao.org/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
   
                   <p>
-                    WangJianYong1124
-                    <small>Member since Sep. 2021</small>
+                    Alexander Pierce - Web Developer
+                    <small>Member since Nov. 2012</small>
                   </p>
                 </li>
                 <!-- Menu Body -->
                 <li class="user-body">
                   <div class="row">
                     <div class="col-xs-4 text-center">
-                      <a href="#">招聘的人</a>
+                      <a href="#">Followers</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#">派遣人员</a>
+                      <a href="#">Sales</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#" >我的同事</a>
+                      <a href="#">Friends</a>
                     </div>
                   </div>
                   <!-- /.row -->
@@ -152,10 +153,10 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
-                    <a href="#" class="btn btn-default btn-flat">设置</a>
+                    <a href="#" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="javascript:;" id="users-signout" class="btn btn-danger btn-flat">退出登录</a>
+                    <a href="javascript:;" id="users-signout" class="btn btn-default btn-flat">Sign out</a>
                   </div>
                 </li>
               </ul>
@@ -177,10 +178,10 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
           <div class="pull-left image">
-          <img src="https://b.picbed.cn/file/picbed-cn/2021/09/24/OIP-C.jpg" alt="User Image" class="img-circle" >
+            <img src="http://adminlte.xueyao.org/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>WangJianYong1124</p>
+            <p>Alexander Pierce</p>
             <!-- Status -->
             <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
           </div>
@@ -203,6 +204,7 @@
           <li class="header">菜单</li>
           <!-- Optionally, you can add icons to the links -->
           <li class="active"><a href="#"><i class="fa fa-link"></i> <span>用户管理</span></a></li>
+          <li><a href="#"><i class="fa fa-link"></i> <span>职位管理</span></a></li>
           
         </ul>
         <!-- /.sidebar-menu -->
@@ -236,10 +238,10 @@
     <footer class="main-footer">
       <!-- To the right -->
       <div class="pull-right hidden-xs">
-        大数据技术与应用
+        Anything you want
       </div>
       <!-- Default to the left -->
-      <strong>Copyright &copy; 2021 <a href="www.jvtc.jx.com">jvtc</a>.</strong> WangJianYong1124
+      <strong>Copyright &copy; 2020 <a href="www.jvtc.jx.com">jvtc</a>.</strong> All rights reserved.
     </footer>
   
     <!-- Control Sidebar -->

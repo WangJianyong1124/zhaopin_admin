@@ -138,13 +138,13 @@
                 <li class="user-body">
                   <div class="row">
                     <div class="col-xs-4 text-center">
-                      <a href="#">招聘的人</a>
+                      <a href="#" class="btn btn-detauly">招聘的人</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#">派遣人员</a>
+                      <a href="#" class="btn btn-primary">派遣人员</a>
                     </div>
                     <div class="col-xs-4 text-center">
-                      <a href="#" >我的同事</a>
+                      <a href="#" class="btn btn-info">我的同事</a>
                     </div>
                   </div>
                   <!-- /.row -->
